@@ -5,7 +5,9 @@
     <script src="https://kit.fontawesome.com/41dff24fe1.js" crossorigin="anonymous"></script>
     <style>
         body {
-            background-color: #eedfea;
+            background-color: #e7e5e7;
+            font-family: Arial, sans-serif;
+            margin: 0; /* Add this line to remove default body margin */
         }
         h1 {
             text-align: center;
@@ -16,7 +18,9 @@
             max-width: 75%;
             margin: 0 auto;
             padding: 10px;
-            background-color: #eedfea;
+            background-color: transparent;
+            overflow-y: auto; /* Change scroll behavior to auto */
+            flex-grow: 1; /* Add this line to make the container grow and occupy available space */
         }
         .chat-bubble {
             border-radius: 20px;
@@ -27,19 +31,19 @@
         }
         .user {
             align-self: flex-start;
-            background-color: #f2d2e4;
+            background-color: #166b0b;
         }
         .chatbot {
             align-self: flex-end;
-            background-color: #f2d2e4;
+            background-color: #c7c3c5;
             color: rgb(14, 1, 1);
         }
         .input-container {
-            position: fixed;
-            bottom: 0;
             width: 100%;
             display: flex;
             justify-content: center;
+            padding-bottom: 20px; /* Add padding to separate from chat container */
+            background-color: transparent;
         }
         .input-container form {
             display:flex;
@@ -64,16 +68,17 @@
           justify-content:center; 
           align-items:center; 
           cursor:pointer; 
-          outline:none
+          outline:none;
         }
         .submit-button i {
           color:white; 
-          font-size:130%
+          font-size:130%;
         }
     </style>
+    
 </head>
 <body>
-    <h1>AI chatbot</h1>
+    <h1>Pursuit's AI chatbot</h1>
     <div class="chat-container">
         {% for message in chat_history %}
             <div class="chat-bubble {{ message.sender }}">
@@ -108,13 +113,21 @@
           thinkingBubble.classList.add("chat-bubble", "chatbot");
           thinkingBubble.textContent = "Thinking...";
           document.querySelector(".chat-container").appendChild(thinkingBubble);
+
+          const chatContainer = document.querySelector(".chat-container");
+          chatContainer.scrollTop = chatContainer.scrollHeight;
       });
 
       if ("{{ chat_history[-1].content }}" !== "Thinking...") {
           typeMessage("{{ chat_history[-1].content }}");
           document.querySelector("#chime").play();
-      }
-    </script>
+
+const chatContainer = document.querySelector(".chat-container");
+chatContainer.scrollTop = chatContainer.scrollHeight;
+}
+</script>
 
 </body>
 </html>
+
+
