@@ -8,7 +8,7 @@ from bs4 import BeautifulSoup
 import re
 app = Flask(__name__)
 
-os.environ["OPENAI_API_KEY"] = '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'
+os.environ["OPENAI_API_KEY"] = ''
 
 def sanitize_file_name(file_name):
     # Remove any special characters from the file name
